@@ -21,6 +21,8 @@ import RoleManager from "@/pages/admin/RoleManager";
 import PricingEngine from "@/pages/admin/PricingEngine";
 import MatchingConcierge from "@/pages/admin/MatchingConcierge";
 import AuditDesk from "@/pages/admin/AuditDesk";
+import VerifyQueue from "@/pages/admin/VerifyQueue";
+import UserManagement from "@/pages/admin/UserManagement";
 
 function RequireAuth({ children, role }: { children: React.ReactNode; role?: string }) {
   const { user } = useAuth();
@@ -51,6 +53,8 @@ function AppRoutes() {
       <Route path="/admin/pricing" element={<RequireAuth role="SUPER_ADMIN"><PricingEngine /></RequireAuth>} />
       <Route path="/admin/matching" element={<RequireAuth role="SUPER_ADMIN"><MatchingConcierge /></RequireAuth>} />
       <Route path="/admin/audit" element={<RequireAuth role="SUPER_ADMIN"><AuditDesk /></RequireAuth>} />
+      <Route path="/admin/verify-queue" element={<RequireAuth role="SUPER_ADMIN"><VerifyQueue /></RequireAuth>} />
+      <Route path="/admin/users" element={<RequireAuth role="SUPER_ADMIN"><UserManagement /></RequireAuth>} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

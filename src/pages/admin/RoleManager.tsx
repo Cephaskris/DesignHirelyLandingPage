@@ -71,9 +71,9 @@ export default function RoleManager() {
         <div className="flex flex-col gap-3">
           {roles.map(role => (
             <div key={role.id} className="bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] overflow-hidden">
-              <button
+              <div
                 onClick={() => setExpandedId(expandedId === role.id ? null : role.id)}
-                className="w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer hover:bg-[#f8f8fb] transition-colors">
+                className="w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer hover:bg-[#f8f8fb] transition-colors select-none">
                 <div>
                   <p className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-base">{role.title}</p>
                   <p className="text-[#9ca3af] text-xs mt-0.5">{role.questions.length} question{role.questions.length !== 1 ? "s" : ""}</p>
@@ -85,7 +85,7 @@ export default function RoleManager() {
                     <path d="M6 9l6 6 6-6" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
                 </div>
-              </button>
+              </div>
 
               {expandedId === role.id && (
                 <div className="border-t border-[rgba(0,0,0,0.06)] px-6 py-4 flex flex-col gap-3 bg-[#fafafa]">

@@ -162,7 +162,7 @@ export default function VideoStudio() {
                         <span className="font-bold text-[#29235c] text-sm">{p.label}</span>
                         <p className="text-[#6b7280] text-xs mt-0.5">{p.days} days of visibility</p>
                       </div>
-                      <span className="font-['Montserrat:Black',sans-serif] font-black text-[#29235c] text-lg whitespace-nowrap">₦{p.price.toLocaleString()}</span>
+                      <span className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-lg whitespace-nowrap">₦{p.price.toLocaleString()}</span>
                     </label>
                   ))}
                 </div>

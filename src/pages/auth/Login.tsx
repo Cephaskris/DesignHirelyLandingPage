@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import hirelyLogo from "@/assets/hirely-logo.png";
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -24,17 +25,17 @@ export default function Login() {
     setLoading(false);
   };
 
-  /* Navigate once user is set in context */
-  if (user) {
-    const dest = user.role === "SUPER_ADMIN" ? "/admin" : user.role === "EMPLOYER" ? "/employer" : "/employee";
-    navigate(dest, { replace: true });
-  }
+  useEffect(() => {
+    if (user) {
+      const dest = user.role === "SUPER_ADMIN" ? "/admin" : user.role === "EMPLOYER" ? "/employer" : "/employee";
+      navigate(dest, { replace: true });
+    }
+  }, [user, navigate]);
 
   return (
     <div className="min-h-screen bg-[#f3f3f3] flex flex-col items-center justify-center px-5 py-12">
-      <Link to="/" className="flex items-center gap-2 mb-8">
-        <div className="bg-[#009fe3] w-8 h-8 rounded-lg flex items-center justify-center font-black text-white text-lg">H</div>
-        <span className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#29235c] text-xl">hirely</span>
+      <Link to="/" className="mb-8">
+        <img src={hirelyLogo} alt="Hirely" className="h-9 w-auto object-contain" />
       </Link>
       <div className="bg-white rounded-2xl shadow-sm border border-[rgba(0,0,0,0.06)] p-8 w-full max-w-md">
         <h1 className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#29235c] text-2xl mb-1">Welcome back</h1>

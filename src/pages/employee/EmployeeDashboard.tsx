@@ -95,7 +95,7 @@ function StatCard({ label, value, accent }: { label: string; value: string; acce
   return (
     <div className="bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] p-5">
       <p className="text-[#6b7280] text-xs font-semibold uppercase tracking-wide mb-1">{label}</p>
-      <p className="font-['Montserrat:Black',sans-serif] font-black text-2xl" style={{ color: accent }}>{value}</p>
+      <p className="font-['Raleway:Bold',sans-serif] font-bold text-2xl" style={{ color: accent }}>{value}</p>
     </div>
   );
 }

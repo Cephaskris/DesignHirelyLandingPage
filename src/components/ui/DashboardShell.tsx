@@ -1,8 +1,24 @@
 import { useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth, type UserRole } from "@/context/AuthContext";
+import hirelyLogo from "@/assets/hirely-logo.png";
 
 interface NavItem { label: string; path: string; icon: ReactNode }
+
+/* ── Inline icon components ─────────────────────── */
+const GridIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/></svg>;
+const VideoIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg>;
+const OfferIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const SearchIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8"/><path d="M21 21l-4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const ShieldIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg>;
+const WalletIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M21 12V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><circle cx="16" cy="12" r="2" stroke="currentColor" strokeWidth="1.8"/></svg>;
+const RocketIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10M15 9l-3 3m0 0l-3 3m3-3V5m0 7h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const EditIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const CurrencyIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8"/><path d="M12 7v10M9 9.5C9 8.12 10.34 7 12 7s3 1.12 3 2.5-1.34 2.5-3 2.5-3 1.12-3 2.5S10.34 17 12 17s3-1.12 3-2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const MatchIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const AuditIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8L14 2zM14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const UsersIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const QueueIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M9 11l3 3L22 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 
 const NAV: Record<UserRole, NavItem[]> = {
   EMPLOYEE: [
@@ -19,6 +35,8 @@ const NAV: Record<UserRole, NavItem[]> = {
   ],
   SUPER_ADMIN: [
     { label: "Dashboard", path: "/admin", icon: <GridIcon /> },
+    { label: "User Management", path: "/admin/users", icon: <UsersIcon /> },
+    { label: "Verify Queue", path: "/admin/verify-queue", icon: <QueueIcon /> },
     { label: "Role Manager", path: "/admin/roles", icon: <EditIcon /> },
     { label: "Monetization", path: "/admin/pricing", icon: <CurrencyIcon /> },
     { label: "Matching", path: "/admin/matching", icon: <MatchIcon /> },
@@ -41,11 +59,8 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
   const Sidebar = () => (
     <aside className="flex flex-col h-full bg-[#29235c] text-white w-64 shrink-0">
       <div className="flex items-center gap-3 px-6 py-5 border-b border-white/10">
-        <div className="bg-[#009fe3] w-8 h-8 rounded-lg flex items-center justify-center font-black text-lg">H</div>
-        <div>
-          <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-sm leading-tight">hirely</p>
-          <p className="text-white/50 text-[11px]">{roleLabel} Portal</p>
-        </div>
+        <img src={hirelyLogo} alt="Hirely" className="h-7 w-auto object-contain brightness-0 invert" />
+        <p className="text-white/50 text-[11px] ml-1">{roleLabel} Portal</p>
       </div>
       <nav className="flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto">
         {nav.map(item => {
@@ -122,15 +137,3 @@ export default function DashboardShell({ children }: { children: ReactNode }) {
   );
 }
 
-/* ── Inline icon components ─────────────────────── */
-function GridIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.8"/></svg>; }
-function VideoIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg>; }
-function OfferIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>; }
-function SearchIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8"/><path d="M21 21l-4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>; }
-function ShieldIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/></svg>; }
-function WalletIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M21 12V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><circle cx="16" cy="12" r="2" stroke="currentColor" strokeWidth="1.8"/></svg>; }
-function RocketIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10M15 9l-3 3m0 0l-3 3m3-3V5m0 7h7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>; }
-function EditIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
-function CurrencyIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8"/><path d="M12 7v10M9 9.5C9 8.12 10.34 7 12 7s3 1.12 3 2.5-1.34 2.5-3 2.5-3 1.12-3 2.5S10.34 17 12 17s3-1.12 3-2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>; }
-function MatchIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>; }
-function AuditIcon() { return <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8L14 2zM14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>; }

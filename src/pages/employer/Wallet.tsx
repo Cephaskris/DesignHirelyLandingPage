@@ -40,7 +40,7 @@ export default function Wallet() {
         <div className="bg-[#29235c] rounded-2xl p-6 flex items-center justify-between gap-4">
           <div>
             <p className="text-white/60 text-xs font-semibold uppercase tracking-wide">Current Balance</p>
-            <p className="font-['Montserrat:Black',sans-serif] font-black text-white text-4xl mt-1">
+            <p className="font-['Raleway:Bold',sans-serif] font-bold text-white text-3xl mt-1">
               {user?.creditBalance ?? 0} <span className="text-xl font-semibold">credits</span>
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function Wallet() {
                   </div>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="font-['Montserrat:Black',sans-serif] font-black text-[#29235c] text-base">₦{b.price.toLocaleString()}</p>
+                  <p className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-base">₦{b.price.toLocaleString()}</p>
                   <p className="text-[#009fe3] text-xs font-bold">{b.credits} credits</p>
                 </div>
               </label>

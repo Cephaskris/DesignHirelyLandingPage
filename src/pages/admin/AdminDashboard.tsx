@@ -32,7 +32,7 @@ export default function AdminDashboard() {
           {STATS.map(s => (
             <div key={s.label} className="bg-white rounded-2xl border border-[rgba(0,0,0,0.06)] p-5">
               <p className="text-[#9ca3af] text-xs font-semibold uppercase tracking-wide">{s.label}</p>
-              <p className="font-['Montserrat:Black',sans-serif] font-black text-2xl mt-1" style={{ color: s.color }}>{s.value}</p>
+              <p className="font-['Raleway:Bold',sans-serif] font-bold text-2xl mt-1" style={{ color: s.color }}>{s.value}</p>
               <p className="text-[#9ca3af] text-xs mt-1">{s.delta}</p>
             </div>
           ))}
@@ -60,6 +60,8 @@ export default function AdminDashboard() {
           {/* Quick nav */}
           <div className="flex flex-col gap-3">
             {[
+              { to: "/admin/users", label: "User Management", desc: "View, moderate, and approve all accounts", emoji: "👥" },
+              { to: "/admin/verify-queue", label: "Verification Queue", desc: "Process Tier 2 & 3 cases · assign agents", emoji: "✅" },
               { to: "/admin/roles", label: "Role & Question Manager", desc: "Manage job roles and interview prompts", emoji: "📋" },
               { to: "/admin/pricing", label: "Monetization Engine", desc: "Adjust credit prices and pass durations", emoji: "💰" },
               { to: "/admin/matching", label: "Matching Concierge", desc: "Curate and push candidate recommendations", emoji: "🤝" },

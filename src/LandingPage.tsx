@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import svgPaths from "../imports/svg-c03ftl1f6l";
+import hirelyLogo from "@/assets/hirely-logo.png";
 import imgHeroSection from "@/imports/HirelyLandingPage/c33fe0ab48bee1d4d7eead2aa8c36afa4aece2a0.png";
 import imgHeroSection1 from "@/imports/HirelyLandingPage/3c0ea0dbb731abb6fda4b367ecf5796f75db7782.png";
 
@@ -505,11 +506,8 @@ function FooterSection() {
       </div>
       <div className="px-5 md:px-10 lg:px-20 py-12 md:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="flex flex-col gap-5 sm:col-span-2 lg:col-span-1">
-          <div className="flex gap-2 items-center">
-            <div className="bg-[#009fe3] flex items-center justify-center rounded-md w-8 h-8 shrink-0">
-              <p className="font-['Raleway:Black',sans-serif] font-black text-white text-lg leading-none">H</p>
-            </div>
-            <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-white text-xl">hirely</p>
+          <div className="flex items-center">
+            <img src={hirelyLogo} alt="Hirely" className="h-7 w-auto object-contain brightness-0 invert" />
           </div>
           <p className="font-['Raleway:Regular',sans-serif] font-normal text-white/70 text-xs sm:text-[14px] leading-[22px] max-w-xs">
             Connecting small businesses with vetted, reliable, and verified staff across Nigeria. Build your business with confidence.

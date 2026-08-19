@@ -85,7 +85,7 @@ export default function LaunchHub() {
                       </ul>
                       <p className="text-green-700 text-xs font-semibold mt-2">🎁 + {p.bonus}</p>
                     </div>
-                    <p className="font-['Montserrat:Black',sans-serif] font-black text-[#29235c] text-sm text-right whitespace-nowrap">{p.price}</p>
+                    <p className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-sm text-right whitespace-nowrap">{p.price}</p>
                   </label>
                 ))}
               </div>
