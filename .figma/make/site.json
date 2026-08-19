@@ -1,0 +1,10 @@
+{
+  "description": "Streamline hiring processes with an intuitive landing page and user dashboard, designed for employers and job seekers to connect efficiently.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Raleway:Regular';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway:Medium';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway:SemiBold';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway:Bold';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway:ExtraBold';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway:Black';
+  src: url('https://static.figma.com/font/Raleway_wght__1') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat:Black';
+  src: url('https://static.figma.com/font/Montserrat_wght__2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
