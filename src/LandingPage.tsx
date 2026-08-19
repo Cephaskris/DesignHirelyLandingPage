@@ -2,8 +2,7 @@ import { useState, useEffect, useRef, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import svgPaths from "../imports/svg-c03ftl1f6l";
 import hirelyLogo from "@/assets/hirely-logo.png";
-import imgHeroSection from "@/imports/HirelyLandingPage/c33fe0ab48bee1d4d7eead2aa8c36afa4aece2a0.png";
-import imgHeroSection1 from "@/imports/HirelyLandingPage/3c0ea0dbb731abb6fda4b367ecf5796f75db7782.png";
+import hirelyBg from "@/assets/Hirely BG.png";
 
 /* ─── Parallax hook ─────────────────────────────────────────── */
 function useParallax(speed = 0.4) {
@@ -148,26 +147,20 @@ function Navbar() {
 
 /* ─── Hero ──────────────────────────────────────────────────── */
 function HeroSection() {
-  const { ref, offset } = useParallax(0.35);
   const { ref: textRef, visible } = useFadeUp(0.1);
 
   return (
-    <div ref={ref} className="relative w-full flex flex-col items-center pt-[48px] px-5 md:px-10 lg:px-20 pb-[372px] overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img alt="" className="absolute w-full object-cover object-top will-change-transform"
-          style={{ height: "120%", top: "-10%", transform: `translateY(${offset}px)` }}
-          src={imgHeroSection} />
-      </div>
+    <div className="relative w-full flex flex-col items-center pt-[48px] px-5 md:px-10 lg:px-20 pb-[240px] md:pb-[372px] overflow-hidden">
       <div
         ref={textRef}
         className="relative z-10 flex flex-col gap-6 items-center text-center w-full max-w-4xl transition-all duration-700 ease-out"
         style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)" }}
       >
-        <div className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#1e1656]">
+        <div className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#29235c]">
           <p className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight lg:leading-[64px] mb-1">Hire Great Staff Fast.</p>
           <p className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight lg:leading-[64px]">No Commissions. No Stress.</p>
         </div>
-        <p className="font-['Raleway:Medium',sans-serif] font-medium text-[#1e1656] opacity-90 text-base sm:text-lg md:text-[20px] leading-relaxed md:leading-[32px] max-w-xl md:max-w-2xl">
+        <p className="font-['Raleway:Medium',sans-serif] font-medium text-[#29235c] opacity-90 text-base sm:text-lg md:text-[20px] leading-relaxed md:leading-[32px] max-w-xl md:max-w-2xl">
           We connect small businesses with honest, pre-checked workers in 24 to 72 hours. No hidden fees. Free replacements.
         </p>
       </div>
@@ -177,23 +170,16 @@ function HeroSection() {
 
 /* ─── Action Cards ──────────────────────────────────────────── */
 function ActionCards() {
-  const { ref, offset } = useParallax(0.25);
   const { ref: cardsRef, visible } = useFadeUp(0.1);
 
   return (
-    <div id="for-employers" ref={ref} className="relative w-full flex flex-col items-center p-5 sm:p-10 md:p-16 lg:p-20 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <img alt="" className="absolute object-cover w-full will-change-transform"
-          style={{ height: "120%", top: "-10%", transform: `translateY(${offset}px)` }}
-          src={imgHeroSection1} />
-        <div className="absolute inset-0 bg-[rgba(41,35,92,0.95)]" />
-      </div>
+    <div id="for-employers" className="relative w-full flex flex-col items-center p-5 sm:p-10 md:p-16 lg:p-20 overflow-hidden">
       <div
         ref={cardsRef}
         className="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 w-full max-w-6xl transition-all duration-700 ease-out"
         style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(40px)" }}
       >
-        <div className="bg-white flex-1 flex flex-col gap-6 p-8 md:p-10 rounded-2xl shadow-[0px_8px_12px_rgba(0,0,0,0.1)] relative">
+        <div className="bg-white flex-1 flex flex-col gap-6 p-8 md:p-10 rounded-2xl shadow-[0px_8px_12px_rgba(0,0,0,0.1)] relative transition-transform duration-300 hover:scale-[0.98]">
           <div className="absolute inset-0 border border-[rgba(0,0,0,0.06)] rounded-2xl pointer-events-none" />
           <div className="flex flex-col gap-2">
             <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#009fe3] text-[11px] sm:text-[13px] tracking-[1px] uppercase">For Employers</p>
@@ -206,7 +192,7 @@ function ActionCards() {
             Find Staff Today
           </Link>
         </div>
-        <div className="bg-[#29235c] flex-1 flex flex-col gap-6 p-8 md:p-10 rounded-2xl shadow-[0px_8px_12px_rgba(0,0,0,0.1)] relative border border-white/20">
+        <div className="bg-[#29235c] flex-1 flex flex-col gap-6 p-8 md:p-10 rounded-2xl shadow-[0px_8px_12px_rgba(0,0,0,0.1)] relative border border-white/20 transition-transform duration-300 hover:scale-[0.98]">
           <div className="flex flex-col gap-2">
             <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#009fe3] text-[11px] sm:text-[13px] tracking-[1px] uppercase">For Jobseekers</p>
             <p className="font-['Raleway:Bold',sans-serif] font-bold text-white text-xl sm:text-2xl md:text-[28px]">Looking for a good job?</p>
@@ -242,7 +228,7 @@ function WhyChooseSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
         {benefits.map((b, i) => (
           <FadeCard key={i} delay={i * 120}>
-            <div className="bg-white flex flex-col gap-6 p-8 md:p-10 rounded-2xl relative h-full">
+            <div className="bg-white flex flex-col gap-6 p-8 md:p-10 rounded-2xl relative h-full transition-transform duration-300 hover:scale-[0.98]">
               <div className="absolute inset-0 border border-[rgba(0,0,0,0.06)] rounded-2xl pointer-events-none" />
               <div className="bg-[rgba(41,35,92,0.07)] flex items-center justify-center rounded-xl w-14 h-14 shrink-0">
                 <svg fill="none" width="28" height="28" viewBox="0 0 28 28">{b.icon}</svg>
@@ -295,7 +281,7 @@ function PricingSection() {
       </FadeCard>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start w-full max-w-6xl">
         <FadeCard delay={0}>
-          <div className="bg-[#f3f3f3] flex flex-col gap-8 p-8 rounded-2xl relative border border-[rgba(0,0,0,0.06)]">
+          <div className="bg-[#f3f3f3] flex flex-col gap-8 p-8 rounded-2xl relative border border-[rgba(0,0,0,0.06)] transition-transform duration-300 hover:scale-[0.98]">
             <div>
               <p className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-base sm:text-lg">Pay-Per-Hire</p>
               <p className="font-['Raleway:Regular',sans-serif] font-normal text-[#1f1f1f] text-xs sm:text-[14px] mt-1">Best if hiring once in a while</p>
@@ -311,7 +297,7 @@ function PricingSection() {
           </div>
         </FadeCard>
         <FadeCard delay={120}>
-          <div className="bg-[#29235c] flex flex-col gap-8 p-8 md:p-10 rounded-2xl shadow-[0px_16px_16px_rgba(41,35,92,0.25)] md:-mt-4">
+          <div className="bg-[#29235c] flex flex-col gap-8 p-8 md:p-10 rounded-2xl shadow-[0px_16px_16px_rgba(41,35,92,0.25)] md:-mt-4 transition-transform duration-300 hover:scale-[0.98]">
             <div className="flex flex-col gap-2">
               <span className="self-start bg-[#009fe3] text-white text-[10px] sm:text-[11px] font-['Raleway:ExtraBold',sans-serif] font-extrabold uppercase px-3 py-1 rounded-full">Most Popular</span>
               <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-white text-lg sm:text-xl mt-1">Starter Plan</p>
@@ -328,7 +314,7 @@ function PricingSection() {
           </div>
         </FadeCard>
         <FadeCard delay={240}>
-          <div className="bg-[#f3f3f3] flex flex-col gap-8 p-8 rounded-2xl relative border border-[rgba(0,0,0,0.06)]">
+          <div className="bg-[#f3f3f3] flex flex-col gap-8 p-8 rounded-2xl relative border border-[rgba(0,0,0,0.06)] transition-transform duration-300 hover:scale-[0.98]">
             <div>
               <p className="font-['Raleway:Bold',sans-serif] font-bold text-[#29235c] text-base sm:text-lg">Growth Plan</p>
               <p className="font-['Raleway:Regular',sans-serif] font-normal text-[#1f1f1f] text-xs sm:text-[14px] mt-1">Best for growing companies (Up to 10 hires/mo)</p>
@@ -419,7 +405,7 @@ function VerifySection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
         {cards.map((c, i) => (
           <FadeCard key={i} delay={i * 120}>
-            <div className="bg-white flex flex-col gap-5 p-8 rounded-2xl">
+            <div className="bg-white flex flex-col gap-5 p-8 rounded-2xl transition-transform duration-300 hover:scale-[0.98]">
               <div>
                 <p className="font-['Raleway:ExtraBold',sans-serif] font-extrabold text-[#29235c] text-base sm:text-lg">{c.title}</p>
                 <p className="font-['Raleway:SemiBold',sans-serif] font-semibold text-[#009fe3] text-xs sm:text-[14px] mt-0.5">{c.sub}</p>
@@ -527,13 +513,32 @@ function FooterSection() {
   );
 }
 
+/* ─── Hero Wrapper ──────────────────────────────────────────── */
+function HeroWrapper({ children }: { children: React.ReactNode }) {
+  const { ref, offset } = useParallax(0.25);
+  
+  return (
+    <div ref={ref} className="relative w-full overflow-hidden">
+      <div 
+        className="absolute w-full bg-cover bg-top bg-no-repeat will-change-transform pointer-events-none"
+        style={{ backgroundImage: `url("${hirelyBg}")`, height: "120%", top: "-10%", transform: `translateY(${offset}px)` }}
+      />
+      <div className="relative z-10 w-full flex flex-col">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page ──────────────────────────────────────────────────── */
 export default function LandingPage() {
   return (
-    <div className="bg-white flex flex-col w-full min-h-screen">
+    <div className="bg-white flex flex-col w-full min-h-screen overflow-x-hidden">
       <Navbar />
-      <HeroSection />
-      <ActionCards />
+      <HeroWrapper>
+        <HeroSection />
+        <ActionCards />
+      </HeroWrapper>
       <WhyChooseSection />
       <PricingSection />
       <HowItWorksSection />
