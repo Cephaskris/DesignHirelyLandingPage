@@ -46,6 +46,42 @@ const DEFAULT_BUNDLES: CreditBundle[] = [
   { id: "enterprise", label: "Enterprise Bundle", price: 250000, credits: 40 },
 ];
 
+/* ── Commission Structure ───────────────────────────────────── */
+export interface CommissionStructure {
+  monthlyRate: number;          // % of monthly salary charged to employer
+  contractRate: number;         // % of total contract value charged once
+  billingCycle: "ONGOING" | "ONE_TIME"; // ONGOING = every month, ONE_TIME = placement fee only
+  gracePeriodDays: number;      // days after due date before status → OVERDUE
+}
+
+const DEFAULT_COMMISSION: CommissionStructure = {
+  monthlyRate: 15,
+  contractRate: 10,
+  billingCycle: "ONGOING",
+  gracePeriodDays: 7,
+};
+
+/* ── Talent Requests ────────────────────────────────────────── */
+export interface TalentRequest {
+  id: string;
+  employerId: string;
+  company: string;
+  role: string;
+  count: number;
+  location: string;
+  salary: string;
+  notes: string;
+  status: "OPEN" | "IN_PROGRESS" | "PUSHED" | "CLOSED";
+  submittedAt: string;
+  creditSpent: number;
+}
+
+const DEFAULT_REQUESTS: TalentRequest[] = [
+  { id: "REQ-001", employerId: "er-001", company: "NovaTech Solutions Ltd", role: "Customer Service Representative", count: 3, location: "Lagos", salary: "₦70,000 – ₦90,000", notes: "Must speak Yoruba and English. Lagos only.", status: "OPEN", submittedAt: "Aug 16", creditSpent: 1 },
+  { id: "REQ-002", employerId: "er-001", company: "NovaTech Solutions Ltd", role: "Driver / Logistics Officer", count: 5, location: "Ikeja, Lagos", salary: "₦60,000 – ₦75,000", notes: "Valid Lagos license. Experience with dispatch apps.", status: "IN_PROGRESS", submittedAt: "Aug 15", creditSpent: 1 },
+  { id: "REQ-003", employerId: "er-001", company: "NovaTech Solutions Ltd", role: "IT Support Technician", count: 1, location: "Remote", salary: "₦100,000+", notes: "Networking skills required. Remote-friendly.", status: "PUSHED", submittedAt: "Aug 14", creditSpent: 1 },
+];
+
 /* ── Pushed Candidates ──────────────────────────────────────── */
 export interface PushedCandidate {
   id: number;
@@ -71,6 +107,13 @@ interface AppDataContextValue {
   pushedCandidates: PushedCandidate[];
   pushCandidate: (candidate: PushedCandidate) => void;
   getPushedForEmployer: (employerId: string) => PushedCandidate[];
+
+  talentRequests: TalentRequest[];
+  addTalentRequest: (req: TalentRequest) => void;
+  updateRequestStatus: (id: string, status: TalentRequest["status"]) => void;
+
+  commission: CommissionStructure;
+  setCommission: (c: CommissionStructure) => void;
 }
 
 const AppDataContext = createContext<AppDataContextValue | null>(null);
@@ -80,6 +123,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   const [passes, setPasses] = useState<CandidatePass[]>(DEFAULT_PASSES);
   const [bundles, setBundles] = useState<CreditBundle[]>(DEFAULT_BUNDLES);
   const [pushedCandidates, setPushedCandidates] = useState<PushedCandidate[]>([]);
+  const [talentRequests, setTalentRequests] = useState<TalentRequest[]>(DEFAULT_REQUESTS);
+  const [commission, setCommission] = useState<CommissionStructure>(DEFAULT_COMMISSION);
 
   const pushCandidate = (candidate: PushedCandidate) => {
     setPushedCandidates(prev => {
@@ -91,8 +136,14 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
   const getPushedForEmployer = (employerId: string) =>
     pushedCandidates.filter(c => c.targetEmployerId === employerId);
 
+  const addTalentRequest = (req: TalentRequest) =>
+    setTalentRequests(prev => [req, ...prev]);
+
+  const updateRequestStatus = (id: string, status: TalentRequest["status"]) =>
+    setTalentRequests(prev => prev.map(r => r.id === id ? { ...r, status } : r));
+
   return (
-    <AppDataContext.Provider value={{ roles, setRoles, passes, setPasses, bundles, setBundles, pushedCandidates, pushCandidate, getPushedForEmployer }}>
+    <AppDataContext.Provider value={{ roles, setRoles, passes, setPasses, bundles, setBundles, pushedCandidates, pushCandidate, getPushedForEmployer, talentRequests, addTalentRequest, updateRequestStatus, commission, setCommission }}>
       {children}
     </AppDataContext.Provider>
   );

@@ -80,6 +80,8 @@ export default function EmployerDashboard() {
         {/* Quick action grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
+            { to: "/employer/postings", title: "Job Postings", desc: "Post vacancies and track matching", emoji: "📋" },
+            { to: "/employer/hires", title: "Active Hires", desc: "Track onboarding and workforce status", emoji: "👥" },
             { to: "/employer/candidates", title: "Find Candidates", desc: "Search pre-screened video profiles", emoji: "🔍" },
             { to: "/employer/verify", title: "Hirely Verify", desc: "Run background checks on any candidate", emoji: "🛡️" },
             { to: "/employer/wallet", title: "Top Up Credits", desc: "Fund your workspace wallet", emoji: "💳" },

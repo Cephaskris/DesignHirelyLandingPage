@@ -17,17 +17,26 @@ const EditIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-
 const CurrencyIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8"/><path d="M12 7v10M9 9.5C9 8.12 10.34 7 12 7s3 1.12 3 2.5-1.34 2.5-3 2.5-3 1.12-3 2.5S10.34 17 12 17s3-1.12 3-2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
 const MatchIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const AuditIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8L14 2zM14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const ProfileIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const UsersIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 const QueueIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><path d="M9 11l3 3L22 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const BriefcaseIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v4M10 14h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const QuestionIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+const FilmIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.8"/><path d="M7 4v16M17 4v16M2 9h5M17 9h5M2 14h5M17 14h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
+const PeopleIcon = () => <svg fill="none" viewBox="0 0 24 24" className="w-full h-full"><circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="1.8"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
 
 const NAV: Record<UserRole, NavItem[]> = {
   EMPLOYEE: [
     { label: "Dashboard", path: "/employee", icon: <GridIcon /> },
+    { label: "My Profile", path: "/employee/profile", icon: <ProfileIcon /> },
     { label: "Video Studio", path: "/employee/studio", icon: <VideoIcon /> },
     { label: "Offers", path: "/employee/offers", icon: <OfferIcon /> },
+    { label: "Verifications", path: "/employee/verifications", icon: <ShieldIcon /> },
   ],
   EMPLOYER: [
     { label: "Dashboard", path: "/employer", icon: <GridIcon /> },
+    { label: "Job Postings", path: "/employer/postings", icon: <BriefcaseIcon /> },
+    { label: "Active Hires", path: "/employer/hires", icon: <PeopleIcon /> },
     { label: "Find Candidates", path: "/employer/candidates", icon: <SearchIcon /> },
     { label: "Hirely Verify", path: "/employer/verify", icon: <ShieldIcon /> },
     { label: "Wallet", path: "/employer/wallet", icon: <WalletIcon /> },
@@ -40,6 +49,8 @@ const NAV: Record<UserRole, NavItem[]> = {
     { label: "Role Manager", path: "/admin/roles", icon: <EditIcon /> },
     { label: "Monetization", path: "/admin/pricing", icon: <CurrencyIcon /> },
     { label: "Matching", path: "/admin/matching", icon: <MatchIcon /> },
+    { label: "Interview Questions", path: "/admin/interview-questions", icon: <QuestionIcon /> },
+    { label: "Video Vault", path: "/admin/video-vault", icon: <FilmIcon /> },
     { label: "Audit Desk", path: "/admin/audit", icon: <AuditIcon /> },
   ],
 };

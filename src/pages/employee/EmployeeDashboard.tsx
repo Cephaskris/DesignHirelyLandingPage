@@ -83,8 +83,10 @@ export default function EmployeeDashboard() {
 
         {/* Quick actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <ActionCard to="/employee/studio" title="Record Video Intro" desc="Complete your guided video interview questions" color="#29235c" />
-          <ActionCard to="/employee/offers" title="Review Offers" desc="You have 1 pending offer awaiting your response" color="#009fe3" />
+          <ActionCard to="/employee/profile" title="Build My Profile" desc="Add work history, education, skills, and job preferences" color="#29235c" />
+          <ActionCard to="/employee/studio" title="Record Video Intro" desc="Complete your guided video interview questions" color="#009fe3" />
+          <ActionCard to="/employee/offers" title="Review Offers" desc="You have 1 pending offer awaiting your response" color="#16a34a" />
+          <ActionCard to="/employee/verifications" title="My Verifications" desc="Upload documents for employer background checks" color="#7c3aed" />
         </div>
       </div>
     </DashboardShell>

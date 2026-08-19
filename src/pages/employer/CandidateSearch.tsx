@@ -4,6 +4,7 @@ import DashboardShell from "@/components/ui/DashboardShell";
 import { useAuth } from "@/context/AuthContext";
 import { useAppData } from "@/context/AppDataContext";
 
+
 const CANDIDATES = [
   { id: 1, name: "Amara Okonkwo", roles: ["Customer Service Representative", "Admin / Receptionist"], location: "Lagos", exp: "3 years", verified: true, videoBlob: null as Blob | null },
   { id: 2, name: "Emeka Eze", roles: ["Driver / Logistics Officer"], location: "Abuja", exp: "5 years", verified: true, videoBlob: null },
@@ -15,7 +16,7 @@ const CANDIDATES = [
 
 export default function CandidateSearch() {
   const { user, spendCredit } = useAuth();
-  const { roles } = useAppData();
+  const { roles, commission } = useAppData();
   const roleNames = ["All Roles", ...roles.map(r => r.title)];
 
   const [roleFilter, setRoleFilter] = useState("All Roles");
@@ -134,6 +135,22 @@ export default function CandidateSearch() {
                     className="w-full border border-[rgba(0,0,0,0.12)] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-[#009fe3] focus:ring-2 focus:ring-[#009fe3]/20" />
                 </div>
               ))}
+              {/* Commission preview */}
+              {offerForm.salary && Number(offerForm.salary) > 0 && (
+                <div className="bg-[#f0f9ff] border border-[#bae6fd] rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[#0369a1] text-xs font-bold">Hirely Commission ({commission.monthlyRate}%)</p>
+                    <p className="text-[#0369a1] text-[10px] mt-0.5">
+                      {commission.billingCycle === "ONGOING" ? "Billed monthly while hire is active" : "One-time placement fee"}
+                    </p>
+                  </div>
+                  <p className="font-black text-[#29235c] text-base whitespace-nowrap">
+                    ₦{Math.round(Number(offerForm.salary) * commission.monthlyRate / 100).toLocaleString()}
+                    <span className="text-[#9ca3af] text-[10px] font-normal">{commission.billingCycle === "ONGOING" ? "/mo" : " once"}</span>
+                  </p>
+                </div>
+              )}
+
               <div>
                 <label className="text-xs font-semibold text-[#29235c] mb-1 block">Interview Type</label>
                 <select value={offerForm.meeting} onChange={e => setOfferForm(prev => ({ ...prev, meeting: e.target.value }))}
